@@ -1,0 +1,7 @@
+[package]
+name = "movement_module"
+edition = "2021"
+
+[dependencies]
+bevy = "0.13.0"
+bevy_rapier2d = { version="0.25.0", features = [ "simd-stable", "debug-render-2d" ] }

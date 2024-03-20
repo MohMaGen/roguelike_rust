@@ -1,12 +1,29 @@
-use super::{Humanoid, HumanoidBody, HumanoidBundle, MobBundle};
+use bevy::{
+    asset::Handle,
+    ecs::system::Commands,
+    render::texture::Image,
+    sprite::SpriteBundle,
+    transform::components::Transform,
+};
+
+use crate::mob::MobBundle;
+
+use super::{HumanoidBody, HumanoidBundle};
 
 impl HumanoidBundle {
-    /// # Creates new humanoid bundle
-    pub fn new(humanoid_body: HumanoidBody) -> Self {
-        Self {
-            humanoid_body,
-            id: Humanoid,
-            mob: MobBundle::default()
+    pub fn spawn_new(commands: &mut Commands, body_texture: Handle<Image>) -> HumanoidBundle {
+        let body = commands
+            .spawn(SpriteBundle {
+                transform: Transform::from_xyz(0., 0., 0.),
+                texture: body_texture,
+                ..Default::default()
+            })
+            .id();
+
+        HumanoidBundle {
+            id: super::Humanoid,
+            body: HumanoidBody(body),
+            mob: MobBundle::default(),
         }
     }
 }

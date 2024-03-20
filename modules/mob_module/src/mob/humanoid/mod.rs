@@ -8,8 +8,7 @@ mod new;
 pub struct HumanoidBundle {
     pub id: Humanoid,
 
-    pub humanoid_body: HumanoidBody,
-
+    pub body: HumanoidBody,
     pub mob: MobBundle,
 }
 
@@ -17,11 +16,4 @@ pub struct HumanoidBundle {
 pub struct Humanoid;
 
 #[derive(Component, Clone, Debug, PartialEq)]
-pub struct HumanoidBody {
-    pub body: Entity,
-    pub head: Entity,
-    pub left_hand: Entity,
-    pub left_leg: Entity,
-    pub right_hand: Entity,
-    pub right_leg: Entity,
-}
+pub struct HumanoidBody(pub Entity);
